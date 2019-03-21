@@ -8,7 +8,7 @@
 		while(n>0)
   { 
 
-  	   output+=s;           ///  adding the new string every time
+  	   output+=s;           ///  adding the new string every time called
   	   n--;
   }
    return output;            ///returning the output 
