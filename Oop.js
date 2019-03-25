@@ -2,29 +2,47 @@
 // Refactor the code as an MakeGame class that shares its methods across different instances.
 
 
-function randInt(n) {
-    return Math.floor(Math.random() * (n + 1));
-}
 
 function makeGame(upperbound){
-  var upper=upperbound;
-  var rand=randInt(upper)
-  var counter=0;
-  return {
-  	guessMyNumber:function(n){
-  		counter++;
-	    if (n > upper) {
-	      return "Out of bounds! Please try a number between 0 and " + upperbound + ".";
-	    } else if (n === rand) {
-	      return "You guessed my number!";
-	    }
-	    return "Nope! That wasn't it!";
-  	},
-  	giveUp:function(){
-    	return rand;
-  	},
-  	numOfGuesses:function(){
-    	return counter;
-  	}
-  }
+ 
+ makeGame ={};
+   makeGame.upper=upperbound;
+  
+   makeGame.counter=0;
+   
+   makeGame.randInt=randInt;
+   makeGame.giveUp=giveUp;
+   makeGame.numOfGuesses=numOfGuesses;
+   makeGame.guessMynumber=guessMynumber;
+   makeGame.rand=randInt(makeGame.upper);
+
+
+  return makeGame;
+}///////////
+
+///////////////////////
+/////////////////////////
+  function randInt(n) {
+    return Math.floor(Math.random() * (n + 1));
 }
+ 
+/////////////////////// start of guess my number.
+  function guessMynumber(n){
+      this.counter++;
+      if (n > this.upper) {
+        return "Out of bounds! Please try a number between 0 and " + upperbound + ".";
+      } else if (n === this.rand) {
+        return "You guessed my number!";
+      }
+      return "Nope! That wasn't it!";
+    }///////////
+    ///////////
+
+    function giveUp(){
+      return this.rand;
+    }//////////
+     ///////
+
+  function  numOfGuesses(){
+      return this.counter;
+    }///////////
